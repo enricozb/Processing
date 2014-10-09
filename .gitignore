@@ -1,0 +1,17 @@
+.DS_Store
+MW/
+GIF/
+blurTest/
+*.gif
+*.png
+*.jpg
+*.tiff
+*.tif
+*.java
+*.txt
+*.wav
+*.mp3
+build-tmp/
+SplitWorlds/
+test/
+RBPhysics/
