@@ -16,7 +16,7 @@ void draw() {
 	translate(width/2, height/2);
 	for(int i = 0; i < 10; i++)
 	{
-		orbit.draw(time, 150 * cos(time + (float) i * PI * .2), 150 * sin(time + (float) i * PI * .2), i/10f);
+		orbit.draw(time + i/5f * PI, 150 * cos(time + (float) i * PI * .2), 150 * sin(time + (float) i * PI * .2), i/10f);
 	}
 	time += rate;
 }

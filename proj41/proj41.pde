@@ -11,7 +11,7 @@ float maxk = 50;
 
 void setup() {
 	size(500,500,OPENGL);
-	smooth(8);
+	smooth(8);o
 	colorMode(HSB);
 }
 

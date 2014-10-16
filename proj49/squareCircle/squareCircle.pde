@@ -27,12 +27,29 @@ void draw() {
 		float from = x1 * sign(cos(radians(i)));
 		float to = x1 * cos(radians(i));
 
-		ellipse(lerp(from,to,t), x1 * sin(radians(i)), 2,2);
+		//ellipse(lerp(from,to,t), x1 * sin(radians(i)), 2,2);
+		float d1 = dist(0,0,lerp(from,to,t), x1 * sin(radians(i)));
 
 		from = x1 * sign(sin(radians(i)));
 		to = x1 * sin(radians(i));
 
-		ellipse(x1 * cos(radians(i)),lerp(from,to,t), 2,2);
+		float d2 = dist(0,0,x1 * cos(radians(i)), lerp(from,to,t));
+
+		if(on && d1 < d2)
+		{
+			from = x1 * sign(cos(radians(i)));
+			to = x1 * cos(radians(i));
+			ellipse(lerp(from,to,t), x1 * sin(radians(i)), 2,2);
+		}
+		else
+		{
+			from = x1 * sign(sin(radians(i)));
+			to = x1 * sin(radians(i));
+			ellipse(x1 * cos(radians(i)),lerp(from,to,t), 2,2);
+		}
+		
+
+		
 	}
 	if(t < 1 && on)
 		t += .01;

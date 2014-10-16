@@ -4,9 +4,10 @@ Walker[] w = new Walker[s];
 
 float a = 250;
 float b = 250;
-
+float t = 0;
 void setup() {
 	size(500,500,P3D);
+	sphereDetail(5);
 	background(255);
 	stroke(0);
 	fill(0);
@@ -24,6 +25,13 @@ float yr = 0; //Y-rotation
 void draw() {
 	background(0);
 	translate(250,250,250);
+	rotateY(noise(t));
+	rotateX(noise(t + 100));
+	rotateZ(noise(t + 10));
+	if(pmouseX != mouseX || pmouseY != mouseY)
+	{
+		t += .01;
+	}
 	rotateY(-radians(xr));
 	rotate (PI/2 - radians(yr), sin(PI/2+radians(xr)), 0, cos(PI/2+radians(xr)));
 	for(Walker p : w)
@@ -46,9 +54,9 @@ void keyPressed()
 
 class Walker
 {
-	int x;
-	int y;
-	int z;
+	float x;
+	float y;
+	float z;
 	Walker(int x, int y, int z)
 	{
 		x = int(random(-200,200));
@@ -62,6 +70,9 @@ class Walker
 	{	
 		pushMatrix();
 		translate(x,y,z);
+		//x += random(-1,1);
+		//y += random(-1,1);
+		//z += random(-1,1);
 		ellipse(0,0,1,1);
 		popMatrix();
 	}
