@@ -11,7 +11,7 @@ float maxk = 50;
 
 void setup() {
 	size(500,500,OPENGL);
-	smooth(8);o
+	smooth(8);
 	colorMode(HSB);
 }
 
@@ -21,7 +21,7 @@ void draw() {
 	noFill();
 	for(int i = 0; i <= maxi; i++)
 	{	
-		//fill(i/maxi * 255, 200, 200);
+		fill(i/maxi * 255, 200, 200);
 		beginShape();
 		curveVertex(0,0);
 		int k = 0;

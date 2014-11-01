@@ -3,9 +3,10 @@ ArrayList<float[]> clicks = new ArrayList<float[]>();
 int num = 50;
 
 void setup() {
-	size(500,500,OPENGL);
+	size(1200,800,OPENGL);
 	smooth(8);
 	ellipseMode(CORNER);
+	noStroke();
 }
 
 void draw() {
@@ -14,19 +15,19 @@ void draw() {
 		{
 			float xi = x * width/num;
 			float yi = y * height/num;
-			float val = 0;
+			float val = 35;
 			for(int i = 0; i < clicks.size(); i++)
 			{
 				float d = dist(xi,yi,clicks.get(i)[0],clicks.get(i)[1]);
-				float t = clicks.get(i)[2] += .001;
+				float t = clicks.get(i)[2] += .01;
 				val += getVal(d,t);
-				if(t > 950)
+				if(t > 2000)
 				{
 					clicks.remove(i);
 					i--;
 				}
 			}
-			fill(val,255);
+			fill(val);
 			rect(xi,yi,width/num,height/num);
 		}
 }

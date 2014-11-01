@@ -1,4 +1,6 @@
-int s = 1000;
+//NONWORKING
+
+int s = 200;
 
 Walker[] w = new Walker[s];
 
@@ -7,37 +9,43 @@ float b = 250;
 float t = 0;
 void setup() {
 	size(500,500,P3D);
-	sphereDetail(5);
-	background(255);
-	stroke(0);
-	fill(0);
+
 	for(int i = 0; i < s; i++)
 	{
-		w[i] = new Walker(0,0,0);
+		w[i] = new Walker();
 	}
 	smooth(8);
-	fill(255);
-	stroke(255);
+	sphereDetail(6);
+	noStroke();
+	fill(255,0,0);
 }
 
 float xr = 0; //X-rotation
 float yr = 0; //Y-rotation
 void draw() {
-	background(0);
-	translate(250,250,250);
-	rotateY(noise(t));
-	rotateX(noise(t + 100));
-	rotateZ(noise(t + 10));
-	if(pmouseX != mouseX || pmouseY != mouseY)
-	{
-		t += .01;
-	}
+	println(frameCount);
+	background(10);
+	translate(width/2,height/2,width/2);
+
+	rotateY(t);
+	rotateX(t);
+	rotateZ(t);
+
 	rotateY(-radians(xr));
 	rotate (PI/2 - radians(yr), sin(PI/2+radians(xr)), 0, cos(PI/2+radians(xr)));
 	for(Walker p : w)
 	{
 		p.update();
+		p.paint();
 	}
+	//t += .001;
+}
+
+void drawVector(PVector a, PVector b)
+{
+	stroke(0,255,0);
+	line(a.x, a.y, a.z, b.x, b.y, b.z);
+	noStroke();
 }
 
 void keyPressed()
@@ -54,26 +62,51 @@ void keyPressed()
 
 class Walker
 {
-	float x;
-	float y;
-	float z;
-	Walker(int x, int y, int z)
+	PVector accel;
+	PVector vel;
+	PVector pos;
+
+	Walker()
 	{
-		x = int(random(-200,200));
-    	y = int(random(-200,200));
-    	z = int(random(-200,200));
-		this.x = x;
-		this.y = y;
-		this.z = z;
+    	pos = new PVector(0,0,0);
+    	accel = new PVector(0,0,0);
+    	vel = new PVector(0,0,0);
+
+		pos.x = random(-200,200);
+    	pos.y = random(-200,200);
+    	pos.z = random(-200,200);
 	}
+
 	void update()
+	{
+		accel = new PVector(0,0,0);
+		for(Walker walk : w)
+		{
+			float a = getForce(walk.pos.x, walk.pos.y, walk.pos.z);
+			PVector direction = PVector.add(PVector.mult(pos, -1), walk.pos);
+			direction.normalize();
+			direction.mult(a);
+			accel.add(direction);
+		}
+	}
+
+	void paint()
 	{	
+		vel.add(accel);
+		vel.mult(.001);
+		pos.add(vel);
+		System.out.printf("%f %f %f", pos.x, pos.y, pos.z);
+		drawVector(pos,accel);
 		pushMatrix();
-		translate(x,y,z);
-		//x += random(-1,1);
-		//y += random(-1,1);
-		//z += random(-1,1);
-		ellipse(0,0,1,1);
+		translate(pos.x,pos.y,pos.z);
+		sphere(.6);
 		popMatrix();
+	}
+
+	float getForce(float x, float y, float z)
+	{
+		float d = dist(x,y,z,pos.x,pos.y,pos.z);
+		float a = pow(d,-2);
+		return a;
 	}
 }

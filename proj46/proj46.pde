@@ -4,7 +4,7 @@ Orbit orbit = new Orbit(1, 10,30, 60);
 
 
 void setup() {
-	size(500,500, OPENGL);
+	size(1200,800, OPENGL);
 	smooth(8);
 	noStroke();
 	colorMode(HSB);
@@ -16,7 +16,7 @@ void draw() {
 	translate(width/2, height/2);
 	for(int i = 0; i < 10; i++)
 	{
-		orbit.draw(time + i/5f * PI, 150 * cos(time + (float) i * PI * .2), 150 * sin(time + (float) i * PI * .2), i/10f);
+		orbit.draw(time + i/5f * PI * 3, 150 * cos(time + (float) i * PI * .2), 150 * sin(time + (float) i * PI * .2), i/10f);
 	}
 	time += rate;
 }

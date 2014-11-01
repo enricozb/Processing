@@ -1,6 +1,7 @@
 /*
 GOOGLE GLASS SPHERE SKETCH
 */
+float t = 0;
 void setup() {
 	size(640,360,P3D);
 	sphereDetail(15);
@@ -9,16 +10,17 @@ float x = 0;
 float y = 0;
 float z = 0;
 
-int t = 0;
 void draw() {
 	background(0);
 	textSize(70);
 	translate(320, 180);
-
+	x = 360 * noise(t);
+	y = 360 * noise(2 * t);
+	z = 360 * noise(noise(t));
 	rotateY(radians(-x));
 	rotate (PI/2 - radians(y), sin(PI/2-radians(-x)), 0, cos(PI/2-radians(-x)));
 	sphere(1000);
-
+	t += .001;
 	//rotate (radians(x), 0, cos(radians(x)), sin(radians(x)));
 	//drawGrid();
 	//rotate(radians(x), 0, 1, sin(radians(y))); //ROTATE Y by a

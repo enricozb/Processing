@@ -5,7 +5,7 @@ int inCount;
 boolean t;
 
 void setup() {
-	size(500,500,OPENGL);
+	size(1200,800,OPENGL);
 	smooth(1024);
 	background(0);
 	initfills();
@@ -17,13 +17,15 @@ void setup() {
 }
 
 void draw() {
-
+	translate(350,185);
+	fill(255);
+	rect(0,0,400,1200);
 	if(t)
 	{
 		draws();
 		return;
 	}
-	background(0);
+	background(35);
 	stroke(179,36,42);
 	strokeWeight(8);
 	fill(199,103,104);
@@ -63,7 +65,7 @@ void draw() {
 
 void draws()
 {
-	background(0);
+	background(35);
 	stroke(179,36,42);
 	strokeWeight(8);
 	fill(199,103,104);
@@ -108,7 +110,7 @@ void overlay(float time)
 {
 	//Do not try to understand these random measurements.
 	noStroke();
-	fill(255);
+	fill(35);
 	translate(0, 0, 2 * R);
 	rect(0,0,100,500);
 	rect(400,0,100,500);
@@ -126,6 +128,10 @@ void overlay(float time)
 	rect(0, R * 2 - 9.1,700,300);
 	rect(100, -552,500,300);
 	popMatrix();
+
+	fill(35);
+	rect(-400,0,400,1200);
+	rect(400,0,400,1200);
 }
 
 void check(int i , int k)

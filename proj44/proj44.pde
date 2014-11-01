@@ -21,9 +21,9 @@ void setup() {
 }
 
 void draw() {
-	//background(255);
-	fill(255,10);
-	rect(width/2,height/2,width,height);
+	background(255);
+	//fill(35,100);
+	//rect(width/2,height/2,width,height);
 	if(time >= 0)
 		for(int i = diameter; i < width; i += diameter)
 		{
@@ -35,15 +35,15 @@ void draw() {
 				//float tempDiameter = pow((width - dist(i,j,pmouseX,pmouseY))/width,30) * diameter;
 				rect(i,j,tempDiameter,tempDiameter);
 				
-				/*
+				
 				for(float k = 0; k <= 30 * rate; k += rate)
 				{
 					fill(0, pow((rate - k)/rate,1) * 150);
-					float tempDiameter = pow((width - dist(i,j,getX(time - k),getY(time - k)))/width,30) * diameter;
+					tempDiameter = pow((width - dist(i,j,getX(time - k),getY(time - k)))/width,30) * diameter;
 					//float tempDiameter = pow((width - dist(i,j,pmouseX,pmouseY))/width,30) * diameter;
 					ellipse(i,j,tempDiameter,tempDiameter);
 				}
-				*/
+				
 				
 			}
 		}

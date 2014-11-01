@@ -3,7 +3,7 @@ float time = 0;
 
 void setup() 
 {
-	size(500,500,OPENGL);
+	size(1200,800,OPENGL);
 	smooth(8);
 	strokeWeight(5);
 	stroke(255);
@@ -16,7 +16,7 @@ int times = 20;
 void draw() 
 {
 	background(35);
-	translate(width/2,0);
+	translate(width/2,150);
 	rotateY(time);
 	for(float i = 100; i <= 400; i += .1)
 	{

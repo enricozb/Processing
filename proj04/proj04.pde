@@ -1,15 +1,16 @@
 ArrayList<float[]> clicks = new ArrayList<float[]>();
 
-float rSquareNum = 100;
+float rSquareNum = 50;
 float sqw = 500f/rSquareNum;
-float speed = .001;
+float speed = .005;
 boolean lastPress = false;
 
 void setup() {
-	size(500,500,OPENGL);
-	smooth(8);
-	background(0);	
+	size(1200,800,OPENGL);
+	smooth(8);	
 	noStroke();
+	fill(35);
+	noCursor();
 }
 
 void draw() {
@@ -24,9 +25,9 @@ void draw() {
 		lastPress = false;	
 	}
 
-	for(float i = 0; i < 500; i += sqw)
+	for(float i = 0; i < width; i += sqw)
 	{
-		for(float j = 0; j < 500; j += sqw)
+		for(float j = 0; j < height; j += sqw)
 		{
 			float rotateVal = 0;
 			pushMatrix();
@@ -34,7 +35,7 @@ void draw() {
 			{
 				float[] arr = clicks.get(k);
 				rotateVal += rval(i + sqw/2, j + sqw/2, arr[0], arr[1], arr[2] += speed);
-				if(arr[2] > 1800)
+				if(arr[2] > 2000)
 				{
 					clicks.remove(k);
 					k--;
@@ -42,7 +43,6 @@ void draw() {
 			}
 			translate(i + sqw/2, j + sqw/2, 0);
 			rotateX(rotateVal);
-			fill(0);
 			rect(-sqw/2,-sqw/2,sqw,sqw);
 			popMatrix();
 		}

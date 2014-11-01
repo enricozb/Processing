@@ -6,7 +6,7 @@ float range = 20;
 float timexRate = -radians(5);
 float timeyRate = -radians(5);
 void setup() {
-	size(800,800,OPENGL);
+	size(1200,800,OPENGL);
 	smooth(8);
 	fill(255);
 	noStroke();
@@ -14,7 +14,7 @@ void setup() {
 }
 
 void draw() {
-	background(0);
+	background(35);
 	for(int i = -20; i < width + 20; i += range)
 	{
 		fill(200,100,100);

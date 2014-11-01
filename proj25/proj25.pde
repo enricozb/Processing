@@ -13,10 +13,13 @@ float sq3 = sqrt(3);
 
 int fCount = -20;
 
+int ti = 0;
+
 void setup() {
-	size(500,500,OPENGL);
+	size(1200,800,OPENGL);
 	smooth(8);
 	noStroke();
+	background(35);
 	initDataFields();
 	//initGifMaker();
 	ortho();
@@ -32,8 +35,8 @@ void initGifMaker()
 
 void initDataFields()
 {
-	initNoiseData();
-	initLinesData();
+	//initNoiseData();
+	//initLinesData();
 }
 
 void initNoiseData()
@@ -75,21 +78,21 @@ void newLineDataEntry(float x, float y, float theta)
 	lines.put(new PVector(x,y,theta),temp);
 }
 
-void drawRhombus()
+void drawRhombus(float t, boolean f)
 {
 	println("DRAWING SHAPES");
-	boolean h = true;
+	boolean h = f;
 	fill(255,0,0);
 	int k = 0;
 
-	for(float i = -10*sq3; i < width; i += 10*sq3)
+	for(float i = -10*sq3 + t * 10*sq3; i < t * 10*sq3; i += 10*sq3)
 	{
 		if(h)
 			k = 0;
 		else
 			k = 10;
 		h = !h;
-		for(k = k; k < height; k += 20)
+		for(k = k; k <= height; k += 20)
 			drhombus(i,k,20);
 	}
 }
@@ -180,16 +183,22 @@ void addFrame()
 	}
 }
 
+void keyPressed()
+{
+	drawRhombus(ti, ti % 2 == 0);
+	ti++;
+}
+
 void draw() {
-	background(35);
-	drawRhombus();
+	//drawRhombus(ti);
+	//ti++;
 	//drawLines();
 	//drawNoise();
 
 	//addFrame();
 	//println(fCount);
-	saveFrame();
-	noLoop();
+	//saveFrame();
+	//noLoop();
 }
 
 class rhombus

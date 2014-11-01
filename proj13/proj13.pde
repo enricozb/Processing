@@ -2,22 +2,20 @@ string t = new string(null, random(240,260),random(240,260), false);
 float time = 0;
 void setup() 
 {
-	size(500,500,P3D);
+	size(1200,800,P3D);
 	noFill();
 	smooth(8);
 	for(int i = 0; i < 10; i++)
 	{
 		t.link(new string(null,random(240,260),random(240,260),false));
 	}
-
+	noCursor();
 }
 
 void draw() 
 {
 	noStroke();
-	//background(0,75);
-	fill(0,100);
-	rect(0,0,500,500);
+	background(35);
 	noFill();
 	t.l.x = mouseX;
 	t.l.y = mouseY;

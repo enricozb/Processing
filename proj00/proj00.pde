@@ -6,25 +6,25 @@ float mLastPressY = -1;
 
 final float speed = 3;
 
-boolean userInteractive = false;
+boolean userInteractive = true;
 void setup() 
 {
-	size(1440,800,OPENGL);
+	size(1200,800,OPENGL);
 	colorMode(HSB);
 	noStroke();
 	smooth(12);
 	ArrayList<float[]> vTemp = new ArrayList<float[]>();
-	vTemp.add(new float[]{300,300});
-	vTemp.add(new float[]{300,600});
-	vTemp.add(new float[]{600,600});
-	vTemp.add(new float[]{600,300});
+	vTemp.add(new float[]{400,200});
+	vTemp.add(new float[]{400,600});
+	vTemp.add(new float[]{800,600});
+	vTemp.add(new float[]{800,200});
 	Shape q = new Shape(vTemp, 0.0, 0);
 	shapes.add(q);
 }
 
 void draw() 
 {
-	background(255);
+	background(35);
 	fill(0);
 	//println(shapes.size());
 	for(int i = 0; i < shapes.size(); i++)
@@ -97,6 +97,12 @@ void slice(float x, float y)
 	shapes = temp;
 }
 
+void keyPressed()
+{
+	if(key =='p')
+		userInteractive = false;
+}
+
 class Shape
 {
 	ArrayList<float[]> vertexes;
@@ -116,7 +122,7 @@ class Shape
 	//Update and Draw :D
 	void updraw() 
 	{
-		fill(col,255,255);
+		fill(col,200,200);
 		beginShape();
 		for(float[] v : vertexes)
 		{
@@ -228,4 +234,4 @@ class Shape
 		}
 			return new float[] {x1+t*bx, y1+t*by};
 	}
-}
+};

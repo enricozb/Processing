@@ -9,7 +9,7 @@ float ly;
 
 void setup()
 {
-  size(500,500,OPENGL);
+  size(1200,800,OPENGL);
   smooth(8);
   //noSmooth();
   background(255);
@@ -22,7 +22,7 @@ void setup()
 }
 void draw()
 {
-  background(255);
+  background(35);
   if(mousePressed && mouseButton == LEFT)
   {
     lColor = true;
@@ -41,7 +41,6 @@ void draw()
   else if(mouseButton == RIGHT)
   {
     paths = new ArrayList<Path>();
-    background(255);
   }
   else
   {
@@ -75,7 +74,7 @@ class Path
     sPoint = new float[] {x1,y1};
     fPoint = new float[] {x2,y2};
     factor = dist(sPoint[0],sPoint[1],fPoint[0],fPoint[1]);
-    factor2 = 50/factor;
+    factor2 = 100/factor;
     cols = col;
     time = 0;
   }
@@ -84,9 +83,9 @@ class Path
   {
     pushMatrix();
     //rotate
-    translate(250,250);
+    translate(width/2,height/2);
     rotateY(time);
-    translate(-250,-250);
+    translate(-width/2,-height/2);
     
     //draw
     strokeWeight(factor2);

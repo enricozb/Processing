@@ -2,17 +2,17 @@ float time = 0;
 float rate = radians(2);
 
 void setup() {
-	size(500,500,OPENGL);
+	size(1200,800,OPENGL);
 	noStroke();
 	colorMode(HSB);
 	sphereDetail(12);
 }
 
 void draw() {
-	background(0);
+	background(35);
 	for(int i = 0; i < 100; i++)
 	{
-		fill(i * 2.55,200,255);
+		fill(i * 2.55,200,200);
 		pushMatrix();
 		translate(getX(time - radians(i)),getY(time - radians(i)), getZ(time - radians(i)));
 		sphere((100-i)/10f);
@@ -25,7 +25,7 @@ void draw() {
 	}
 	else
 	{
-		exit();
+		//exit();
 	}
 }
 

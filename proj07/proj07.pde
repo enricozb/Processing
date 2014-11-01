@@ -13,7 +13,7 @@ void setup()
 
 void draw()
 {
-  background(255);
+  background(35);
   pushMatrix();
   translate(250,250);
   rotateZ(radians(theta));
@@ -39,7 +39,7 @@ void draw()
 void dot(float a, float b)
 {
   noStroke();
-  fill(0);
+  fill(255);
   ellipse(a, b, 5,5);
   noFill();
 }

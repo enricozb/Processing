@@ -5,25 +5,26 @@ Minim minim;
 AudioOutput aout;
 
 boolean[][] board;
-boolean paused;
+boolean paused = true;
 
 int frameR = 10;
 float dur = 1.5/frameR;
 void setup() {
-	size(800,800,"processing.core.PGraphicsRetina2D");
+	size(1200,800,"processing.core.PGraphicsRetina2D");
 	frameRate(frameR);
-	board = new boolean[80][80];
+	board = new boolean[120][80];
+	board[board.length/2][board[0].length/2] = true;
 	noStroke();
-	fill(0);
+	fill(255);
 	//initRandom();
 	initMinim();
 }
 
 void draw() {
-	background(255);
-	for(int i = 0; i < 80; i++)
+	background(35);
+	for(int i = 0; i < board.length; i++)
 	{
-		for(int k = 0; k < 80; k++)
+		for(int k = 0; k < board[i].length; k++)
 		{
 			if(board[i][k])
 				rect(i * 10,k * 10,10,10);
@@ -41,8 +42,8 @@ void initMinim()
 
 void initRandom()
 {
-	for(int i = 0; i < 80; i++)
-		for(int k = 0; k < 80; k++)
+	for(int i = 0; i < board.length; i++)
+		for(int k = 0; k < board[i].length; k++)
 			if(random(1) > .9)
 				board[i][k] = true;
 }
@@ -58,8 +59,8 @@ void update()
 			if((!board[i][k] && n == 3) || (board[i][k] && (n == 3 || n == 2)))
 			{
 				tboard[i][k] = true;
-				if(!board[i][k])
-					aout.playNote(0,.05 ,pow(2,i/40f) * 220);
+				//if(!board[i][k])
+					//aout.playNote(0,.05 ,pow(2,i/40f) * 220);
 			}
 		}
 	}
@@ -72,7 +73,7 @@ int getNumNext(boolean[][] b, int i, int k)
 	for(int j = -1; j < 2; j++)
 		for(int l = -1; l < 2; l++)
 		{
-			if(j + i < 0 || j + i >= b.length || l + k < 0 || l + k >= b.length)
+			if(j + i < 0 || j + i >= b.length || l + k < 0 || l + k >= b[j + i].length)
 				continue;
 			if(b[i + j][k + l])
 				c++;

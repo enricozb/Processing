@@ -12,18 +12,18 @@ void setup() {
 	r = 20;
 	gap = r/2;
 	elapTime = 0;
-	speed = .1;
+	speed = .05;
 	noStroke();
 	smooth(8);
 	colorMode(HSB);
 	fill(255);
-	size(800,800, OPENGL);
+	size(1200,800, OPENGL);
 	background(0);
+	noCursor();
 }
 
 void draw() {
-	fill(0,50);
-	rect(0,0,800,800);
+	background(35);
 	fill(255);
 
 	if((mousePressed && !lastPressed) || (mousePressed && count % 10 == 0))
