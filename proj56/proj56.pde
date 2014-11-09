@@ -6,29 +6,31 @@ float tf = .1;
 
 //float t = -10;
 void setup() {
-	size(500,500,OPENGL);
+	size(1200,800,OPENGL);
 	smooth(8);
 	stroke(255);
-	strokeWeight(2);
+	strokeWeight(4);
 	noFill();
 	background(0);
 	colorMode(HSB);
 }
 
 void draw() {
-	background(35);
-	translate(width/2,height/2,-width/2);
-	for(float t = -100; t < 100; t+=tf)
+	background(200);
+	translate(width/2,height/2);
+	for(float t = -200; t < 200; t+=tf)
 	{
-		stroke(map(t,-100,100,0,255),200,200);
+		stroke(map(t,-200,200,0,255),200,200);
 		beginShape();
-		curveVertex(x(t),y(t),z(t));
-		curveVertex(x(t),y(t),z(t));
-		curveVertex(x(t+tf),y(t+tf),z(t+tf));
-		curveVertex(x(t+tf),y(t+tf),z(t+tf));		
+		curveVertex(x(t),y(t));
+		curveVertex(x(t),y(t));
+		curveVertex(x(t+tf),y(t+tf));
+		curveVertex(x(t+tf),y(t+tf));		
 		endShape();
 	}
 	ts += radians(50);
+	if(frameCount == 1)
+		saveFrame("####.jpg");
 }
 
 void point(float x, float y, float z)

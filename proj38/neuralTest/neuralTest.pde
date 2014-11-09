@@ -4,6 +4,7 @@ int count = 0;
 
 void setup() {
 	size(800,800,OPENGL);
+	smooth(8);
 	for(int i = 0; i < t.length; i++)
 	{
 		float x = random(width);
@@ -26,6 +27,8 @@ void draw() {
 	line(0,f(0),width,f(width));
 	ellipse(t[count].in[0],t[count].in[1],8,8);
 	count = (count + 1) % t.length;
+	if(count == 300)
+		saveFrame("####.jpg");
 }
 
 float f(float x)

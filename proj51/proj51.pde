@@ -1,14 +1,13 @@
 import java.util.*;
 
-int num = 2000;
+int num = 700;
 float sphereRadius = .6;
 ArrayList<Particle> particles = new ArrayList<Particle>();
 float dampning = 1;
 float t = 0;
 
 float G = 1;
-
-boolean paused = true;
+boolean paused = false;
 
 float x,y,z;
 
@@ -26,10 +25,10 @@ void setup()
 void draw()
 {
 	background(35);
-	translate(width/2, height/2, width/2);
+	translate(width/2, height/2, -width/2);
 
-	rotateY(x);
-	rotateX(y);
+	rotateX(x);
+	rotateY(y);
 	rotateZ(z);
 
 	x = 2 * PI * noise(t);
@@ -64,6 +63,8 @@ void keyPressed()
 
 	if(key == 'p')
 		paused = !paused;
+	if(key == 's')
+		saveFrame("####.njpg");
 }
 
 class Particle
@@ -126,11 +127,11 @@ class Particle
 
 	void draw()
 	{
-		//fill(200 - vel.mag() * 50,200,200);
+		fill(200 - vel.mag() * 50,200,200);
 		pushMatrix();
 		translate(pos.x, pos.y, pos.z);
-		ellipse(0,0,sphereRadius,sphereRadius);
-		//sphere(radius);
+		//ellipse(0,0,sphereRadius,sphereRadius);
+		sphere(radius);
 		popMatrix();
 	}
 }
